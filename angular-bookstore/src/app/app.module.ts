@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { BookListComponent } from './component/book-list/book-list.component';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 import { BookService } from './services/book.service';
+import { BookCategoryComponent } from './component/book-category/book-category.component';
 
 const routes: Routes = [
   {path:'books', component: BookListComponent},
@@ -20,7 +21,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     BookListComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    BookCategoryComponent
   ],
   imports: [
     BrowserModule,
