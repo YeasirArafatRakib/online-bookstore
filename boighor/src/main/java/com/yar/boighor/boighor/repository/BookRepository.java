@@ -12,4 +12,7 @@ public interface BookRepository extends JpaRepository<Book,Long> {
 	
 	@RestResource(path="categoryid")
 	Page<Book> findByCategoryId(@Param("id") Long id , Pageable pageable);
+	
+	@RestResource(path="search-keyword")
+	Page<Book> findByNameContaining(@Param("name") String keyword , Pageable pageable);
 }
