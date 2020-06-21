@@ -10,9 +10,11 @@ import { PageNotFoundComponent } from './component/page-not-found/page-not-found
 import { BookService } from './services/book.service';
 import { BookCategoryComponent } from './component/book-category/book-category.component';
 import { SearchComponent } from './component/search/search.component';
+import { BookDetailsComponent } from './component/book-details/book-details.component';
 
 const routes: Routes = [
   {path:'books', component: BookListComponent},
+  {path:'books/:id', component: BookDetailsComponent},
   {path:'search/:keyword', component: BookListComponent},
   {path:'category/:id', component: BookListComponent},
   {path:'', redirectTo: '/books' , pathMatch:'full'},
@@ -25,7 +27,8 @@ const routes: Routes = [
     BookListComponent,
     PageNotFoundComponent,
     BookCategoryComponent,
-    SearchComponent
+    SearchComponent,
+    BookDetailsComponent
   ],
   imports: [
     BrowserModule,

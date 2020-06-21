@@ -36,6 +36,12 @@ export class BookService {
     return this.httpClient.get<GetResponseBookCategory>(this.categoryUrl).pipe(
       map(response => response._embedded.bookCategories));
   }
+
+  getBookById(bookId: number):Observable<Book>{
+    const bookDetailsUrl = `${this.baseUrl}/${bookId}`;
+    return this.httpClient.get<Book>(bookDetailsUrl);
+  }
+
 }
 
 interface GetResponseBooks{
