@@ -11,6 +11,7 @@ import { BookService } from './services/book.service';
 import { BookCategoryComponent } from './component/book-category/book-category.component';
 import { SearchComponent } from './component/search/search.component';
 import { BookDetailsComponent } from './component/book-details/book-details.component';
+import { JwPaginationModule } from 'jw-angular-pagination';
 
 const routes: Routes = [
   {path:'books', component: BookListComponent},
@@ -29,10 +30,12 @@ const routes: Routes = [
     BookCategoryComponent,
     SearchComponent,
     BookDetailsComponent
+    
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    JwPaginationModule,
     RouterModule.forRoot(routes)
   ],
   providers: [

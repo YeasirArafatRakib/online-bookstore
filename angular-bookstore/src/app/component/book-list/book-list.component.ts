@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../services/book.service';
 import { Book } from '../../common/book';
 import { ActivatedRoute } from '@angular/router';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-book-list',
@@ -14,6 +15,8 @@ export class BookListComponent implements OnInit {
   books: Book[];
   currentCategoryId: number;
   searchMode: boolean;
+  pageOfItems: Array<Book>;
+  pageSize: number = 5;
    
   constructor(private _bookService: BookService,
     private _activatedRoute: ActivatedRoute) { }
@@ -22,6 +25,10 @@ export class BookListComponent implements OnInit {
     this._activatedRoute.paramMap.subscribe(() => {
         this.listBooks();
       })
+  }
+
+  pageClick(pageOfItems: Array<Book>){
+    this.pageOfItems = pageOfItems;
   }
 
   listBooks(){
@@ -51,6 +58,11 @@ export class BookListComponent implements OnInit {
     this._bookService.searchBooks(keyword).subscribe(
       data => this.books = data
     )
+  }
+
+  updatePageSize(pageSize: number){
+    this.pageSize = pageSize;
+    this.listBooks();
   }
 
 }
