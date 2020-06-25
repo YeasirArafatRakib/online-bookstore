@@ -12,6 +12,7 @@ import { BookCategoryComponent } from './component/book-category/book-category.c
 import { SearchComponent } from './component/search/search.component';
 import { BookDetailsComponent } from './component/book-details/book-details.component';
 import { JwPaginationModule } from 'jw-angular-pagination';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {path:'books', component: BookListComponent},
@@ -36,7 +37,8 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
     JwPaginationModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    NgbModule
   ],
   providers: [
     BookService
