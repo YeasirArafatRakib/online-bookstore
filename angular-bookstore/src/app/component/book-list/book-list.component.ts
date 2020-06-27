@@ -3,6 +3,9 @@ import { BookService } from '../../services/book.service';
 import { Book } from '../../common/book';
 import { ActivatedRoute } from '@angular/router';
 import { ThrowStmt } from '@angular/compiler';
+import { CartService } from 'src/app/services/cart.service';
+import { CartItem } from 'src/app/common/cart-item';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-book-list',
@@ -22,8 +25,11 @@ export class BookListComponent implements OnInit {
   pageSize: number = 5;
   totalRecords: number = 0;
    
-  constructor(private _bookService: BookService,
-    private _activatedRoute: ActivatedRoute) { }
+  constructor(
+              private _bookService: BookService,
+              private _cartService: CartService,
+              private _spinnerService:NgxSpinnerService,
+              private _activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe(() => {
@@ -33,6 +39,9 @@ export class BookListComponent implements OnInit {
 
 
   listBooks(){
+
+    //start the loader
+    this._spinnerService.show();
      this.searchMode = this._activatedRoute.snapshot.paramMap.has('keyword');
     if(this.searchMode){
       this.handleSearchBookList();
@@ -78,12 +87,25 @@ export class BookListComponent implements OnInit {
   }
 
   processPaginate(){
+    //stops the loader/spinner
+    
+
     return data => {
-      this.books = data._embedded.books;
-      this.currentPage = data.page.number +1;
-      this.totalRecords = data.page.totalElements;
-      this.pageSize = data.page.size;
+      setTimeout(() => {
+        this._spinnerService.hide();
+        this.books = data._embedded.books;
+        this.currentPage = data.page.number +1;
+        this.totalRecords = data.page.totalElements;
+        this.pageSize = data.page.size;
+      },1000);
     }
+  }
+
+  addToCart(book: Book){
+    console.log(`Book Name: ${book.name} and Price : ${book.unitPrice}`);
+    const cartItem  = new CartItem(book);
+    this._cartService.addToCart(cartItem);
+    
   }
 }
 

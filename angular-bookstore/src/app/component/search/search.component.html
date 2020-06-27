@@ -1,14 +1,9 @@
-<div class="col-md-12">
-  <div class="row">
-    <div class="col-md-10">
-      <input type="text" #searchInput id="" 
+<div class="navbar-nav ml-2">
+  <input type="text" #searchInput id="" 
       (keyup.enter)="searchBooks(searchInput.value)"
-      class="form-control" placeholder="Serch Books" />
-    </div>
-    <div class="col-md-2">
+      class="form-control" placeholder="Search Books" />
+
       <button type="submit" 
       (click)="searchBooks(searchInput.value)"
-      class="btn btn-primary">Search</button>
-    </div>
-  </div>
+      class="btn btn-primary ml-2">Search</button>
 </div>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from 'src/app/common/book';
 import { ActivatedRoute } from '@angular/router';
 import { BookService } from 'src/app/services/book.service';
+import { CartService } from 'src/app/services/cart.service';
+import { CartItem } from 'src/app/common/cart-item';
 
 @Component({
   selector: 'app-book-details',
@@ -14,7 +16,8 @@ export class BookDetailsComponent implements OnInit {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private _bookService: BookService
+    private _bookService: BookService,
+    private _cartService: CartService
   ) { }
 
   ngOnInit(): void {
@@ -25,6 +28,7 @@ export class BookDetailsComponent implements OnInit {
     )
   }
   getBookInfo(){
+    
     const id: number =  +this._activatedRoute.snapshot.paramMap.get('id');
     this._bookService.getBookById(id).subscribe(
       data => {
@@ -32,6 +36,13 @@ export class BookDetailsComponent implements OnInit {
       }
     )
 
+  }
+
+  addToCart(book: Book){
+    console.log(`Book Name: ${book.name} and Price : ${book.unitPrice}`);
+    const cartItem  = new CartItem(book);
+    this._cartService.addToCart(cartItem);
+    
   }
 
 }
