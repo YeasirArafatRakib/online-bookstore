@@ -29,10 +29,10 @@ export class CartService {
     }else{
       this.cartItem.push(theCartItem);
     }
-    this.calculateTotalPrice(theCartItem);
+    this.calculateTotalPrice();
 
   }
-  calculateTotalPrice(theCartItem: CartItem) {
+  calculateTotalPrice() {
     let totalPriceValue: number = 0;
     let totalQuantityValue: number = 0;
     //calculate the total price and total quantity
