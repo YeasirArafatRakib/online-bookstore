@@ -28,12 +28,34 @@
                                     <p>{{cartItem.unitPrice | currency:''}}</p>
                                 </td>
                                 <td>
-                                    <div class="col-md-12">
-                                        <p>Quantity: {{cartItem.quantity}}</p>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p>Quantity: 
+                                                <span (click)="removeItemFromCart(cartItem)" class="float-right text-danger pointer">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </span>
+                                            </p>
+                                        </div>
+    
+                                        <div class="col-md-4">
+                                            <button (click)="incrementQuantity(cartItem)" class="btn btn-primary btn-sm float-left"> 
+                                                <i class="fas fa-plus" ></i>
+                                            </button>
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            {{cartItem.quantity}}
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button (click)="decrementQuantity(cartItem)" class="btn btn-primary btn-sm float-right"> 
+                                                <i class="fas fa-minus" ></i>
+                                            </button>
+                                        </div>
+    
+                                        <div class="col-md-12 mt-2">
+                                            <p>Subtotal: {{cartItem.quantity * cartItem.unitPrice  | currency:''}}</p>
+                                        </div>
                                     </div>
-                                    <div class="col-md-12 mt-2">
-                                        <p>Subtotal: {{cartItem.quantity * cartItem.unitPrice  | currency:''}}</p>
-                                    </div>
+                                    
                                 </td>
                             </tr>
                             <tr>
